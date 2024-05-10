@@ -1,14 +1,14 @@
-package baekjoon.gold3;
+package baekjoon.bronze3;
 
 import java.util.Scanner;
 
-public class P2455 {
+public class P2460 {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
 
-        Train train = new Train();
+        Train2 train = new Train2();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
             train.getOut(keyboard.nextInt());
             train.getOn(keyboard.nextInt());
         }
@@ -17,11 +17,11 @@ public class P2455 {
     }
 }
 
-class Train {
+class Train2 {
     private int num;
     private int maxNum;
 
-    public Train() {
+    public Train2() {
         num = 0;
         maxNum = -1; // initialize to -1 to initialize for once
     }

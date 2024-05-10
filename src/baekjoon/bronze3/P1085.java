@@ -1,4 +1,5 @@
-package baekjoon.gold3;
+package baekjoon.bronze3;
+
 import java.util.Scanner;
 
 public class P1085 {
@@ -10,10 +11,10 @@ public class P1085 {
         int w = keyboard.nextInt();
         int h = keyboard.nextInt();
 
-        int[] arr = {x, y, w-x, h-y};
+        int[] arr = {x, y, w - x, h - y};
         int min = arr[0];
 
-        for(int i = 1; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; i++) {
             if (arr[i] < min) {
                 min = arr[i];
             }

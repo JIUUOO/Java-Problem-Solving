@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
 
-        String regex = "[,:]";
+        String regex = "[:]";
         String[] a1 = keyboard.next().split(regex);
         Digital dgt1 = new Digital(Integer.parseInt(a1[0]), Integer.parseInt(a1[1]), Integer.parseInt(a1[2]));
 
@@ -24,9 +24,9 @@ public class Main {
         Digital dgt6 = new Digital(Integer.parseInt(a6[0]), Integer.parseInt(a6[1]), Integer.parseInt(a6[2]));
 
 
-        System.out.println(dgt1.countTarBySection(dgt2));
-        System.out.println(dgt3.countTarBySection(dgt4));
-        System.out.println(dgt5.countTarBySection(dgt6));
+        System.out.println(dgt1.countMultiplesOf3InSection(dgt2));
+        System.out.println(dgt3.countMultiplesOf3InSection(dgt4));
+        System.out.println(dgt5.countMultiplesOf3InSection(dgt6));
     }
 
 }
@@ -83,7 +83,7 @@ class Digital {
     public int[] getSection(Digital dgt) {
         Array res = new Array();
 
-        res[0] = this.digit; // inclusive
+        res.insert(this.digit); // inclusive
         int i = 1;
 
         while (true) {
@@ -91,12 +91,12 @@ class Digital {
                 break;
             }
 
-            res[i] = this.getDigitalIncreasedBy1(this);
-//            System.out.println(res[i]);
+            res.insert(this.getDigitalIncreasedBy1(this));
+
             i++;
         }
 
-        return res;
+        return res.arr;
     }
 
     // Returns true if a parameter is multiply of three
@@ -105,13 +105,12 @@ class Digital {
     }
 
     // Returns the number of multiplies of 3 according to the section
-    public int countTarBySection(Digital dgt) {
+    public int countMultiplesOf3InSection(Digital dgt) {
         int cnt = 0;
         int[] section = this.getSection(dgt);
 
-        for (int digit : section) {
-            if (isMultipliesOfThree(digit)) {
-//                System.out.println("multiply of 3: " + section[i]);
+        for (int i = 0; i < section.length; i++) {
+            if (isMultipliesOfThree(section[i])) {
                 cnt++;
             }
         }
@@ -121,21 +120,29 @@ class Digital {
 }
 
 class Array {
-    private int[] arr;
-    private int count;
+    int[] arr;
+    int count;
 
     public Array() {
+        arr = new int[0];
         count = 0;
     }
 
     public void insert(int el) {
-
+        // Make a new array where size is 'count' increased by 1
         int[] newArr = new int[count + 1];
 
-        for (int i = 0; i < count + 1; i++) {
-            newArr[i] = arr[i];
+        // Copy existing elements first
+        if (count > 0) { // Prevent assigning when arr is initialized
+            for (int i = 0; i < count; i++) {
+                newArr[i] = arr[i];
+            }
         }
 
+        // Assign new element
+        newArr[count++] = el; // The last index of new Arr
+
+        // Then newArr becomes our new array
         arr = newArr;
     }
 }

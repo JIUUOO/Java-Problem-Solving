@@ -12,7 +12,6 @@ public class P2875 {
 
         Personnel personnel = new Personnel(n, m, k);
 
-
         System.out.println(personnel.numOfTeam());
 //        System.out.println(personnel.n);
 //        System.out.println(personnel.m);
